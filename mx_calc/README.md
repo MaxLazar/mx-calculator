@@ -1,15 +1,15 @@
-# MX Calculator#
+# MX Calculator CE#
 
-**MX Calculator** provides mathematical operations in ExpressionEngine 3 templates.
+**MX Calculator** provides mathematical operations in ExpressionEngine 2 templates.
 
 It is build with modified class EvalMath (thanks to Miles Kaufmann) for safely evaluate math expressions.
 
 ## Installation
 * Download the latest version of MX Calculator and extract the .zip to your desktop.
-* Copy *mx_calc* to */system/user/addons/*
+* Copy *system/expressionengine/third_party/mx_calc* to *system/expressionengine/third_party/*
 
 ## Configuration
-Once the Plugin is installed, you should be able to see it listed in the Add-On Manager in your ExpressionEngine Control Panel. Is no needs in any control panel activation or configuration.
+Once the Plugin is installed, you should be able to see it listed in the Plugin Manager in your ExpressionEngine Control Panel. Is no needs in any control panel activation or configuration.
 
 ## Template Tags
 {exp:mx_calc}
@@ -93,9 +93,9 @@ The calculation result
 ## Support Policy
 This is Communite Edition (CE) add-on.
 
-## Contributing To MX Calculator for ExpressionEngine 3
+## Contributing To MX Calculator CE
 
-Your participation to MX Calculator development is very welcome!
+Your participation to MX Calculator CE development is very welcome!
 
 You may participate in the following ways:
 

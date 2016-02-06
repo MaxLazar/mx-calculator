@@ -1,4 +1,4 @@
 # Changelog
 
-* **1.0.2** (2012-10-15)
-  - CE released to the wild.
+* **2.0.1** (2016-01-25)
+  - EE3 version released to the wild.
