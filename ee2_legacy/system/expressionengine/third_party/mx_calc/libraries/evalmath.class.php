@@ -426,11 +426,11 @@ class EvalMathStack {
 // watch out for reversed args!!
 class EvalMathCalcEmul {
 
-    function average( $args ) {
+    public static function average( $args ) {
         return EvalMathCalcEmul::sum( $args )/count( $args );
     }
 
-    function max( $args ) {
+    public static function max( $args ) {
         $res = array_pop( $args );
         foreach ( $args as $a ) {
             if ( $res < $a ) {
@@ -440,7 +440,7 @@ class EvalMathCalcEmul {
         return $res;
     }
 
-    function min( $args ) {
+    public static function min( $args ) {
         $res = array_pop( $args );
         foreach ( $args as $a ) {
             if ( $res > $a ) {
@@ -450,19 +450,19 @@ class EvalMathCalcEmul {
         return $res;
     }
 
-    function mod( $args ) {
+    public static function mod( $args ) {
         return $args[1] % $args[0];
     }
 
-    function pi( $args ) {
+    public static function pi( $args ) {
         return pi();
     }
 
-    function power( $args ) {
+    public static function power( $args ) {
         return pow( $args[1], $args[0] );
     }
 
-    function round( $args ) {
+    public static function round( $args ) {
         if ( count( $args )==1 ) {
             return round( $args[0] );
         } else {
@@ -470,7 +470,7 @@ class EvalMathCalcEmul {
         }
     }
 
-    function sum( $args ) {
+    public static function sum( $args ) {
         $res = 0;
         foreach ( $args as $a ) {
             $res += $a;
