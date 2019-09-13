@@ -1,5 +1,7 @@
 # MX Calculator
 
+![MX QR Code](/resources/img/mx-calculator.png)
+
 **MX Calculator** provides mathematical operations in ExpressionEngine templates.
 
 It is build with modified class EvalMath (thanks to Miles Kaufmann) for safely evaluate math expressions.
