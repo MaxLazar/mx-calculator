@@ -1,6 +1,6 @@
 <?php
 
-require_once PATH_THIRD.'mx_calc/config.php';
+require_once PATH_THIRD.'mx_calc/addon.setup.php';
 
 if (!class_exists('EvalMath')) {
     require_once PATH_THIRD.'mx_calc/libraries/evalmath.class.php';
@@ -15,10 +15,9 @@ if (!class_exists('EvalMath')) {
  */
 $plugin_info = array(
     'pi_name' => MX_CALC_NAME,
-    'pi_version' => MX_CALC_VER,
-    'pi_author' => MX_CALC_AUTHOR,
+    'pi_version' => MX_CALC_VERSION,
     'pi_author_url' => MX_CALC_DOCS,
-    'pi_description' => MX_CALC_DESC,
+    'pi_description' => MX_CALC_DESCRIPTION,
     'pi_usage' => mx_calc::usage(),
 );
 
@@ -28,26 +27,34 @@ class Mx_calc
 
     public function __construct($tagdata = '')
     {
-        $result = false;
-
-        $tagdata = (isset(ee()->TMPL->tagdata)) ? ee()->TMPL->tagdata : false;
-
+        $result     = false;
+        $tagdata    = (isset(ee()->TMPL->tagdata)) ? ee()->TMPL->tagdata : false;
         $expression = (!ee()->TMPL->fetch_param('expression')) ? '' : ee()->TMPL->fetch_param('expression');
+        $debug      = (!ee()->TMPL->fetch_param('debug')) ? '' : ee()->TMPL->fetch_param('debug');
 
         if (!empty($expression)) {
             $m = new EvalMath();
 
-            $m->suppress_errors = true;
-            $result = $m->evaluate($expression);
-            //print $m->last_error;
+            $m->suppress_errors = $debug == 'on' ?  false : true;
+
+            $result[0]['calc_result'] = $m->evaluate($expression);
+
+            if ($debug == 'yes') {
+                $result[0]['debug']  = $m->last_error;
+            }
+
             if (!empty($tagdata)) {
                 $conds['calc_result'] = $result;
-                $tagdata = ee()->functions->prep_conditionals($tagdata, $conds);
-                $result = ee()->TMPL->swap_var_single('calc_result', $result, $tagdata);
+                $tagdata              = ee()->functions->prep_conditionals($tagdata, $conds);
+                $result               = ee()->TMPL->parse_variables($tagdata, $result);
+            } else {
+                $result = $result[0]['calc_result'];
             }
+
+            return $this->return_data =  $result;
         }
 
-        return $this->return_data = $result;
+        return false;
     }
 
     // ----------------------------------------
@@ -64,4 +71,4 @@ class Mx_calc
 }
 
 /* End of file pi.mx_calc.php */
-/* Location: ./system/expressionengine/third_party/mx_calc/pi.mx_calc.php */
+/* Location: ./system/user/addons/mx_calc/pi.mx_calc.php */

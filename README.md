@@ -1,6 +1,5 @@
-# MX Calculator
-
-![MX QR Code](/resources/img/mx-calculator.png)
+# MX Calculator#
+![Screenshot](resources/img/mx-calc.png)
 
 **MX Calculator** provides mathematical operations in ExpressionEngine templates.
 
@@ -10,6 +9,8 @@ It is build with modified class EvalMath (thanks to Miles Kaufmann) for safely e
 * Place the **mx_calc** folder inside your **user/addons** folder
 * Go to **cp/addons** and install *MX Calculator*.
 
+## Configuration
+Once the Plugin is installed, you should be able to see it listed in the Plugin Manager in your ExpressionEngine Control Panel. Is no needs in any control panel activation or configuration.
 
 ## Template Tags
 {exp:mx_calc}
@@ -63,7 +64,7 @@ or as tag pair
 
     {exp:mx_calc expression="-4(15/42)^23*(4-sin(16))-15"}
 
-#### Other functions
+####Other functions
 
     sinh
     arcsin
@@ -90,8 +91,15 @@ or as tag pair
     {calc_result}
 The calculation result
 
+
+#### Debug
+
+    {exp:mx_calc expression="round(10*1.35,0)asd" debug="on"}
+        {calc_result} {debug}
+    {/exp:mx_calc}
+
 ## Support Policy
-This is Communite Edition (CE) add-on.
+This is Communite Edition add-on.
 
 ## Contributing To MX Calculator
 
