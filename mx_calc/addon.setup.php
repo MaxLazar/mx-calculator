@@ -17,5 +17,5 @@ return [
     'namespace' => $addonJson->namespace,
     'author' => 'Max Lazar',
     'author_url' => 'https://eecms.dev',
-    'settings_exist' => false
+    'settings_exist' => true
 ];

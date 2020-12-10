@@ -9,6 +9,10 @@ It is build with modified class EvalMath (thanks to Miles Kaufmann) for safely e
 * Place the **mx_calc** folder inside your **user/addons** folder
 * Go to **cp/addons** and install *MX Calculator*.
 
+
+## Update
+If you using MX Calc prior to version 3.0.5, you would need to Uninstall and install an add-on. It safe to do, because this add-on doesn't keep any data.
+
 ## Configuration
 Once the Plugin is installed, you should be able to see it listed in the Plugin Manager in your ExpressionEngine Control Panel. Is no needs in any control panel activation or configuration.
 
@@ -28,6 +32,8 @@ or as tag pair
 ### Parameters
 
     expression="-4(15/42)^23*(4-sqrt(16))-15" required
+    
+    var = "varible_name"
 
 ### Avalible functions:
 *average*
@@ -91,13 +97,32 @@ or as tag pair
     {calc_result}
 The calculation result
 
-
 #### Debug
 
     {exp:mx_calc expression="round(10*1.35,0)asd" debug="on"}
         {calc_result} {debug}
     {/exp:mx_calc}
+    
+## Examples
 
+#### Using varibles
+
+	{exp:channel:entries channel="demo" limit="10"}
+    	{exp:mx_calc var="var_1" expression="{calc}+"}
+    	{if count == total_results}{exp:mx_calc expression="{var_1}" backspace="1"}{/if}
+	{/exp:channel:entries}
+
+#### Late parsing
+
+**Note** You need to activate mx_cal extension to support late parsing.
+
+	{exp:channel:entries channel="demo" limit="10"}
+    	{exp:mx_calc var="var_1" expression="{calc}+"}
+    	{if count == total_results}{/if}
+	{/exp:channel:entries}
+
+	{exp:mx_calc expression="{var_1}" backspace="1" parsing = "late"}
+	
 ## Support Policy
 This is Communite Edition add-on.
 
