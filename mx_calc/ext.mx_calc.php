@@ -60,11 +60,8 @@ class Mx_calc_ext
 
     public function _calc($tagdata, $param)
     {
-        if (!class_exists('EvalMath')) {
-            require_once PATH_THIRD . 'mx_calc/libraries/evalmath.class.php';
-        }
-
         if (!$param['variable']) {
+            
             if (isset(ee()->session->cache['mx_calc']['var'])) {
                 $param['expression'] = ee()->TMPL->parse_variables(
                     $param['expression'],
@@ -72,11 +69,9 @@ class Mx_calc_ext
                 );
             }
 
-            $m = new EvalMath();
+            ee()->session->cache['mx_calc']['math']->suppress_errors = $param['debug'] == 'on' ? false : true;
 
-            $m->suppress_errors = $param['debug'] == 'on' ? false : true;
-
-            $result[0]['calc_result'] = $m->evaluate($param['expression']);
+            $result[0]['calc_result'] = ee()->session->cache['mx_calc']['math']->evaluate($param['expression']);
 
             if ($param['debug'] == 'yes') {
                 $result[0]['debug'] = $m->last_error;

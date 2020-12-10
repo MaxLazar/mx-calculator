@@ -64,11 +64,11 @@ class Mx_calc
                 );
             }
 
-            $m = new EvalMath();
+            ee()->session->cache['mx_calc']['math'] = new EvalMath();
 
-            $m->suppress_errors = $param['debug'] == 'on' ? false : true;
+            ee()->session->cache['mx_calc']['math']->suppress_errors = $param['debug'] == 'on' ? false : true;
 
-            $result[0]['calc_result'] = $m->evaluate($param['expression']);
+            $result[0]['calc_result'] = ee()->session->cache['mx_calc']['math']->evaluate($param['expression']);
 
             if ($param['debug'] == 'yes') {
                 $result[0]['debug'] = $m->last_error;
