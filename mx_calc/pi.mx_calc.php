@@ -39,12 +39,13 @@ class Mx_calc
             $placeholder = md5(ee()->TMPL->tagproper) . rand();
 
             ee()->session->cache['mx_calc']['late'][$placeholder] = array(
-                'param'     => $param,
+                'param'    => $param,
                 'tagdata'  => $tagdata,
                 'priority' => $param['priority']
             );
 
             return $this->return_data = '{' . $placeholder . '}';
+            //            return $this->return_data = LD . $placeholder . RD;
         }
 
         if (!empty($param['expression'])) {
@@ -63,15 +64,16 @@ class Mx_calc
                     ee()->session->cache['mx_calc']['var']
                 );
             }
-
-            ee()->session->cache['mx_calc']['math'] = new EvalMath();
+            if (!isset(ee()->session->cache['mx_calc']['math'])) {
+                ee()->session->cache['mx_calc']['math'] = new EvalMath();
+            };
 
             ee()->session->cache['mx_calc']['math']->suppress_errors = $param['debug'] == 'on' ? false : true;
 
             $result[0]['calc_result'] = ee()->session->cache['mx_calc']['math']->evaluate($param['expression']);
 
             if ($param['debug'] == 'yes') {
-                $result[0]['debug'] = $m->last_error;
+                $result[0]['debug'] = ee()->session->cache['mx_calc']['math']->last_error;
             }
 
             if (!empty($tagdata)) {
@@ -83,7 +85,6 @@ class Mx_calc
             }
 
             return $result;
-
         } else {
             if (!isset(ee()->session->cache['mx_calc']['var'][0][$param['variable']])) {
                 ee()->session->cache['mx_calc']['var'][0][$param['variable']] = '';

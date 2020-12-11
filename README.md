@@ -34,6 +34,20 @@ or as tag pair
     expression="-4(15/42)^23*(4-sqrt(16))-15" required
     
     var = "varible_name"
+    
+    ### Parameters
+
+    expression="-4(15/42)^23*(4-sqrt(16))-15" required
+    
+    var = "varible_name" (optional)
+    
+    decimals='2' (optional, default = 2)
+    
+    force_zeros='yes' (optional, default  = no)
+    
+    decimal_seperator=',' (optional)
+    
+    thousand_seperator='.' (optional)
 
 ### Avalible functions:
 *average*

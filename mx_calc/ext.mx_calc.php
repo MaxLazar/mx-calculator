@@ -61,7 +61,6 @@ class Mx_calc_ext
     public function _calc($tagdata, $param)
     {
         if (!$param['variable']) {
-            
             if (isset(ee()->session->cache['mx_calc']['var'])) {
                 $param['expression'] = ee()->TMPL->parse_variables(
                     $param['expression'],
