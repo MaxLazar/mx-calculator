@@ -369,6 +369,23 @@ class EvalMathFunctions
     {
         return number_format($value, $decimals, ',', ' ');
     }
+    
+    /**
+     * Format a number with the . as the decimal separator and the ' as the thousand separator, rounded to a precision.
+     *
+     * The is the common number format in switzerland.
+     *
+     * @since NEW
+     *
+     * @param float|int $value    number to be rounded and formatted
+     * @param float|int $decimals Optional. Number of decimals after the decimal separator after the rounding.
+     *
+     * @return float formatted number
+     */
+    public static function number_format_ch($value, $decimals = 0)
+    {
+        return number_format($value, $decimals, ".", "'");
+    }
 
     /**
      * Set the seed for the generation of random numbers.
